@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_easy/repository/github_repository.dart';
+import 'package:flutter_easy/repo/github_repository.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 ///chentong

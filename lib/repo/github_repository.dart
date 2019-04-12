@@ -5,7 +5,7 @@ import 'package:flutter_easy/common/net/bean/baseresp.dart';
 import 'package:flutter_easy/common/util/sputil.dart';
 import 'package:flutter_easy/config/address.dart';
 import 'package:flutter_easy/config/config.dart';
-import 'package:flutter_easy/netbean/login_request.dart';
+import 'package:flutter_easy/repo/bean/login_request.dart';
 
 ///
 /// chentong
@@ -19,8 +19,8 @@ class GithubRepository {
     var bytes = utf8.encode(type);
     var base64Str = base64.encode(bytes);
 
-    SpUtil.put(Config.USER_NAME_KEY, userName);
-    SpUtil.put(Config.USER_BASIC_CODE, base64Str);
+    SpUtil.put(Constants.USER_NAME_KEY, userName);
+    SpUtil.put(Constants.USER_BASIC_CODE, base64Str);
 
     //登录之前首先清除令牌
     HttpManager.clearAuthorization();

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_easy/common/net/config/config.dart';
 import 'package:flutter_easy/common/util/sputil.dart';
+import 'package:flutter_easy/config/config.dart';
 
 /// Token拦截器
 /// Created by guoshuyu
@@ -27,7 +27,7 @@ class TokenInterceptors extends InterceptorsWrapper {
       var responseJson = response.data;
       if (response.statusCode == 201 && responseJson["token"] != null) {
         _token = 'token ' + responseJson["token"];
-        SpUtil.put(Config.TOKEN_KEY, _token);
+        SpUtil.put(Constants.TOKEN_KEY, _token);
       }
     } catch (e) {
       print(e);
@@ -38,14 +38,14 @@ class TokenInterceptors extends InterceptorsWrapper {
   ///清除授权
   clearAuthorization() {
     this._token = null;
-    SpUtil.remove(Config.TOKEN_KEY);
+    SpUtil.remove(Constants.TOKEN_KEY);
   }
 
   ///获取授权token
   getAuthorization() async {
-    String token = SpUtil.get(Config.TOKEN_KEY, null);
+    String token = SpUtil.get(Constants.TOKEN_KEY, null);
     if (token == null) {
-      String basic = SpUtil.get(Config.USER_BASIC_CODE, null);
+      String basic = SpUtil.get(Constants.USER_BASIC_CODE, null);
       if (basic == null) {
         //提示输入账号密码
       } else {
