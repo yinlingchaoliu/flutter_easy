@@ -38,7 +38,12 @@ class HomePage extends StatefulWidget {
 ///
 /// 页面实现
 ///
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
+  ///避免界面重绘
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   void initState() {
     super.initState();
@@ -52,26 +57,33 @@ class _HomePageState extends State<HomePage> {
       body: PageView(
         controller: bloc._controller,
         children: bloc.getPage(),
-        physics: NeverScrollableScrollPhysics(), // 进制滑动切换
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        //底部导航点击事件
-        currentIndex: bloc._currentIndex,
-        onTap: (index) {
-//          homebloc._controller.animateToPage(index,
-//              duration: Duration(milliseconds: 500),
-//              curve: Curves.fastOutSlowIn); // 动画效果 切换
-          bloc._controller.jumpToPage(index); // 无动画效果切换
+        onPageChanged: (index) {
           setState(() {
             bloc._currentIndex = index;
           });
         },
-        type: BottomNavigationBarType.fixed,
-        //fixedColor: Colors.white,
-        items: bloc.getBarItemList(),
+//        physics: NeverScrollableScrollPhysics(), // 禁止滑动
       ),
+      bottomNavigationBar: BottomNavigationBar(
+          //底部导航点击事件
+          currentIndex: bloc._currentIndex,
+          onTap: (index) {
+            bloc._controller.animateToPage(index,
+                duration: Duration(milliseconds: 500),
+                curve: Curves.linear); // 动画效果 切换
+//          bloc._controller.jumpToPage(index); // 无动画效果切换
+            setState(() {
+              bloc._currentIndex = index;
+            });
+          },
+          type: BottomNavigationBarType.fixed,
+          //fixedColor: Colors.white,
+          items: bloc.getBarItemList(),
+          showSelectedLabels: true),
     );
   }
+
+  void pageChange(int index) {}
 
   @override
   void dispose() {

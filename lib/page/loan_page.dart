@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easy/common/bloc/base_bloc.dart';
+import 'package:flutter_easy/common/util/widget_decorator.dart';
+import 'package:flutter_easy/res/drawable.dart';
 
 ///@author: chentong
 ///2019-4-9
@@ -47,6 +49,14 @@ class _LoanPageState extends State<LoanPage> {
         title: new Text('demo'),
         centerTitle: true,
       ),
+      body: new WidgetDecoration(Image.asset(
+        AppIcons.ICON_MINE_BG,
+        fit: BoxFit.fill,
+      ))
+          .sizedBox(width: 200, height: 200)
+          .clipRRect(borderRadius: BorderRadius.all(Radius.circular(30.0)))
+          .center()
+          .build(),
     );
   }
 

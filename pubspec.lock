@@ -282,6 +282,13 @@ packages:
       url: "https://dart-pub.mirrors.sjtug.sjtu.edu.cn"
     source: hosted
     version: "0.1.4"
+  pull_to_refresh:
+    dependency: "direct main"
+    description:
+      name: pull_to_refresh
+      url: "https://dart-pub.mirrors.sjtug.sjtu.edu.cn"
+    source: hosted
+    version: "1.2.0"
   quiver:
     dependency: transitive
     description:

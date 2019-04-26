@@ -17,6 +17,7 @@ class Routes {
 
   static const String welcome_page = "/welcome";
   static const String login_page = "/login_page";
+  static const String account_page = "/account_page";
 
   static void configureRoutes(Router router) {
     router.notFoundHandler = widgetNotFoundHandler;
@@ -25,5 +26,6 @@ class Routes {
     router.define(welcome_page, handler: welcomePageHandler);
     router.define(home_page, handler: homeHandler);
     router.define(login_page, handler: loginHandler);
+    router.define(account_page, handler: accountHandler);
   }
 }

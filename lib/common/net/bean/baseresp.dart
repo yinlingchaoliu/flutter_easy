@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 ///请求扩展类
+///chentong
 abstract class BaseReq {
   String basePath;
   dynamic baseData;

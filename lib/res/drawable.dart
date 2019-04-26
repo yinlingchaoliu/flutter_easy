@@ -1,6 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 class AppIcons {
   static const String FONT_FAMILY = 'wxcIconFont';
 
@@ -23,10 +20,11 @@ class AppIcons {
   static const String ICON_MINE_BG = 'static/images/ic_minebg.png';
   static const String ICON_MINE_USERLOGO = 'static/images/ic_mine_userlogo.png';
   static const String ICON_TELE = 'static/images/ic_tele.png';
-}
 
-class AppIconData {
-  static final ICON_HOME = ImageIcon(new AssetImage(AppIcons.ICON_HOME));
-  static final ICON_HOME_PRE =
-      ImageIcon(new AssetImage(AppIcons.ICON_HOME_PRE));
+  static const String ICON_LOGIN_TITLE = 'static/images/ic_login_title.png';
+
+  static const String ICON_PHONE = 'static/images/ic_phone.png';
+  static const String ICON_IDCODE = 'static/images/ic_idcode.png';
+  static const String ICON_CHECKBOX_CHECKED = 'static/images/ic_checkbox_checked.png';
+  static const String ICON_CHECKBOX_NORMAL = 'static/images/ic_checkbox_normal.png';
 }

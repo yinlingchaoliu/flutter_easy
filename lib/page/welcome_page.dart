@@ -26,12 +26,11 @@ class _WelcomePageState extends State<WelcomePage> {
 
     ///防止多次进入
     new Future.delayed(const Duration(seconds: 3), () {
-      String token = SpUtil.get(Constants.TOKEN_KEY, null);
-      if (token == null || token.isEmpty) {
-        RouterManager.navigateTo(context, Routes.home_page,
+      if (SpUtil.getBool(Constants.ISLOGIN_KEY, defValue: false)) {
+        RouterManager.navigateReplaceTo(context, Routes.home_page,
             transition: TransitionType.inFromRight);
       } else {
-        RouterManager.navigateTo(context, Routes.home_page,
+        RouterManager.navigateReplaceTo(context, Routes.account_page,
             transition: TransitionType.inFromRight);
       }
       return true;
@@ -45,7 +44,8 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Image.asset(AppIcons.DEFAULT_FLASH_ICON);
+    return new FittedBox(
+        fit: BoxFit.cover, child: new Image.asset(AppIcons.DEFAULT_FLASH_ICON));
   }
 
   @override

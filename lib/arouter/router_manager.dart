@@ -56,6 +56,26 @@ class RouterManager {
         transitionBuilder: transitionBuilder);
   }
 
+  /// 页面跳转替换页面
+  static navigateReplaceTo(BuildContext context, String path,
+      {bool replace = true,
+      bool clearStack = false,
+      TransitionType transition,
+      Duration transitionDuration = const Duration(milliseconds: 250),
+      RouteTransitionsBuilder transitionBuilder}) {
+    navigateTo(context, path,
+        replace: replace,
+        clearStack: clearStack,
+        transition: transition,
+        transitionDuration: transitionDuration,
+        transitionBuilder: transitionBuilder);
+  }
+
+  ///弹出页面
+  static bool pop(BuildContext context) {
+    return _router.pop(context);
+  }
+
   ///Application.router.navigateTo(context,
   ///'${Routes.webViewPage}?title=${Uri.encodeComponent(widget.title)} Doc&&url=${Uri.encodeComponent(widget.docUrl)}');
 }

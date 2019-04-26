@@ -11,6 +11,11 @@ class CommonUtil {
     await SystemChannels.platform.invokeMethod('SystemNavigator.pop');
   }
 
+  ///加载asset下json文件
+  static Future<String> loadAssetJson(String jsonPath) async {
+    return await rootBundle.loadString(jsonPath);
+  }
+
   ///image转icon
   static Widget getAssetIcon(String assetImage) {
     return Image(
@@ -38,6 +43,18 @@ class CommonUtil {
 
   static paddingAll(double value) {
     return EdgeInsets.all(value);
+  }
+
+  static magining(
+      {double left = 0.0,
+      double top = 0.0,
+      double right = 0.0,
+      double bottom = 0.0}) {
+    return padding(left: left, top: top, right: right, bottom: bottom);
+  }
+
+  static maginingAll(double value) {
+    return paddingAll(value);
   }
 
   //BoxDecoration
