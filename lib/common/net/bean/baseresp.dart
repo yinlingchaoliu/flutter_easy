@@ -17,13 +17,18 @@ abstract class BaseReq {
 
   ///重新封装当前options
   initOption(String method, String path, dynamic baseData,
-      {headers, queryParameters, cookies, extra, responseType, contentType}) {
+      {headers,
+      queryParameters,
+      cookies,
+      extra,
+      responseType,
+      ParseType contentType = ParseType.URL_ENCODED}) {
     mergeOption(
         method: method,
         path: path,
-        baseData: baseData,
+        baseData: baseData, //base数据
         headers: headers,
-        queryParameters: queryParameters,
+        queryParameters: queryParameters, //query
         cookies: cookies,
         extra: extra,
         responseType: responseType,
@@ -49,7 +54,7 @@ abstract class BaseReq {
     options.extra = extra ?? options.extra;
     options.headers = headers ?? options.headers ?? this.headers;
     options.responseType = responseType ?? options.responseType;
-    options.contentType = contentType ?? options.contentType;
+    options.contentType = Utils.getContentType(contentType);
 
     if (options.method == "GET") {
       this.baseData = null;

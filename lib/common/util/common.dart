@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:convert/convert.dart';
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -57,6 +61,29 @@ class CommonUtil {
     return paddingAll(value);
   }
 
+  ///圆角弧度
+  static borderRadiusAll(double value) {
+    return BorderRadius.all(Radius.circular(value));
+  }
+
+  ///圆角弧度
+  static borderRadius(
+      {double topLeft = 0.0,
+      double topRight = 0.0,
+      double bottomLeft = 0.0,
+      double bottomRight = 0.0}) {
+    var topLeftRadius = Radius.circular(topLeft);
+    var topRightRadius = Radius.circular(topRight);
+    var bottomLeftRadius = Radius.circular(bottomLeft);
+    var bottomRightRadius = Radius.circular(bottomRight);
+
+    return BorderRadius.only(
+        topLeft: topLeftRadius,
+        topRight: topRightRadius,
+        bottomLeft: bottomLeftRadius,
+        bottomRight: bottomRightRadius);
+  }
+
   //BoxDecoration
   ///decoration: background
   static background(String assetImage) {
@@ -72,9 +99,21 @@ class CommonUtil {
     return double.infinity;
   }
 
-  ///  设置宽高 ConstrainedBox
-  ///
+  ///md5 加密
+  static String generateMd5(String data) {
+    var content = new Utf8Encoder().convert(data);
+    var digest = md5.convert(content);
+    // 这里其实就是 digest.toString()
+    return hex.encode(digest.bytes);
+  }
 
+  ///base64
+  static String generateBase64(String data) {
+    var bytes = utf8.encode(data);
+    return base64.encode(bytes);
+  }
+
+  ///  设置宽高 ConstrainedBox
   /// 设置位置
   ///     new Align(
   ///     alignment: FractionalOffset.bottomRight,

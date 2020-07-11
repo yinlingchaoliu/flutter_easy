@@ -20,11 +20,12 @@ class CommonWidget {
 
   ///设置默认statusbar
   static Widget getStatusBar({Color color = Colors.white}) {
-    return new Container(height: 20, width: double.infinity, color: color);
+    return new Container(height: 24.0, width: double.infinity, color: color);
   }
 
   ///获得登录按钮
-  static Widget getLoginRaisedButton({String text = '确认', @required VoidCallback onPressed}) {
+  static Widget getLoginRaisedButton(
+      {String text = '确认', @required VoidCallback onPressed}) {
     return new WidgetDecoration(new RaisedButton(
 
             ///onPressed不能为null
@@ -37,7 +38,8 @@ class CommonWidget {
 
             ///设置圆角
             shape: new RoundedRectangleBorder(
-                side: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(30)))))
+                side: BorderSide.none,
+                borderRadius: BorderRadius.all(Radius.circular(30)))))
         .sizedBox(width: double.infinity, height: 50)
         .build();
   }

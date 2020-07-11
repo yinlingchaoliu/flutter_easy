@@ -1,10 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
+import 'package:flutter/services.dart';
 import 'package:flutter_easy/app/application.dart';
 import 'package:flutter_easy/arouter/router_manager.dart';
-import 'package:flutter_easy/config/Themes.dart';
 import 'package:flutter_easy/page/welcome_page.dart';
+import 'package:flutter_easy/res/Themes.dart';
 import 'package:flutter_easy/res/localizations/localizations_delegate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -18,11 +21,17 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 ///  https://www.cnblogs.com/hupo376787/p/10288199.html
 ///
 ///
-///
 void main() async {
   ///项目初始化点
   await App.init();
   debugPaintSizeEnabled = false; //打开视觉调试开关
+
+  if (Platform.isAndroid) {
+    // 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
+    SystemUiOverlayStyle systemUiOverlayStyle =
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  }
 
   runApp(new MyApp());
 }

@@ -45,7 +45,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return new FittedBox(
-        fit: BoxFit.cover, child: new Image.asset(AppIcons.DEFAULT_FLASH_ICON));
+        fit: BoxFit.cover, child: Image.asset(AppIcons.ICON_FLASH));
   }
 
   @override

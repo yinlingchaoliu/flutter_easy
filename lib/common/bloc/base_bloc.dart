@@ -43,6 +43,13 @@ class _BlocProviderState<T> extends State<BlocProvider<BlocBase>> {
     super.initState();
     widget.bloc.initState();
   }
+
+  ///解决快速hotfix代码的bug
+  @override
+  void didUpdateWidget(BlocProvider<BlocBase> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    widget.bloc.initState();
+  }
 }
 
 abstract class BlocBase {

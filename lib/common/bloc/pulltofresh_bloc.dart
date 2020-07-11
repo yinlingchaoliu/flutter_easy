@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'base_bloc.dart';
@@ -16,9 +17,6 @@ abstract class SmartRefreshBloc extends PullToRefreshBloc {
   void initState() {
     scrollController = new ScrollController();
     refreshController = new RefreshController();
-//    SchedulerBinding.instance.addPostFrameCallback((_) {
-//      refreshController.requestRefresh(true);
-//    });
   }
 
   void scrollTop() {
@@ -43,7 +41,9 @@ abstract class SmartRefreshBloc extends PullToRefreshBloc {
 
   ///请求
   void refreshRequest({bool up = true}) {
-    refreshController.requestRefresh(up);
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      refreshController.requestRefresh(up);
+    });
   }
 
   ///完成

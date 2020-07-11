@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_easy/repo/github_repository.dart';
+import 'package:flutter_easy/test/github_repository.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 ///chentong
@@ -7,8 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class TestNet {
   ///测试登录接口
   static void testLogin() async {
-    await GithubRepository.login("704514698@qq.com", "Heat1314")
-        .then((baseResp) {
+    await GithubRepository.login("704514698@qq.com", "Heat1314").then((baseResp) {
       Fluttertoast.showToast(msg: "用户id" + baseResp.data.id.toString());
     }).catchError((err) {
       DioError dioError = err as DioError;

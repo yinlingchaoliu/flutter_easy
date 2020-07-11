@@ -1,5 +1,6 @@
 ///
 /// 业务常量
+/// sp存储
 ///
 class Constants {
   static const PAGE_SIZE = 20;

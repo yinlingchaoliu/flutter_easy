@@ -2,6 +2,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easy/arouter/404.dart';
 import 'package:flutter_easy/page/account_page.dart';
+import 'package:flutter_easy/page/authent_page.dart';
 import 'package:flutter_easy/page/default_page.dart';
 import 'package:flutter_easy/page/home_page.dart';
 import 'package:flutter_easy/page/login_page.dart';
@@ -42,6 +43,12 @@ var loginHandler = new Handler(
 var accountHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return AccountPage.newInstance();
+});
+
+///认证页面
+var authentHandler = new Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  return AuthentPage.newInstance();
 });
 
 ///for test

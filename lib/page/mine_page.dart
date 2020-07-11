@@ -1,9 +1,15 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easy/arouter/router_manager.dart';
+import 'package:flutter_easy/arouter/routers.dart';
 import 'package:flutter_easy/common/bloc/base_bloc.dart';
 import 'package:flutter_easy/common/util/common.dart';
+import 'package:flutter_easy/common/util/sputil.dart';
 import 'package:flutter_easy/common/util/widget_decorator.dart';
+import 'package:flutter_easy/config/config.dart';
 import 'package:flutter_easy/res/drawable.dart';
+import 'package:flutter_easy/res/res_index.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 ///@author: chentong
@@ -50,14 +56,19 @@ class _MinePageState extends State<MinePage>
     final MineBloc bloc = BlocProvider.of<MineBloc>(context);
 
     return new Scaffold(
-        body: new ListView(
+        body: new Column(
       children: <Widget>[
+//        CommonWidget.getStatusBar(),
         new Container(
             decoration: CommonUtil.background(AppIcons.ICON_MINE_BG),
             width: CommonUtil.matchParent(),
-            height: 141,
-            child: new Column(
+            height: 165,
+            child: new ListView(
+              padding: CommonUtil.paddingAll(0),
               children: <Widget>[
+                new Container(
+                  height: 24,
+                ),
                 new WidgetDecoration(
                         CommonUtil.getAssetIcon(AppIcons.ICON_TELE))
                     .padding(right: 17, top: 10)
@@ -144,6 +155,24 @@ class _MinePageState extends State<MinePage>
           ),
           color: Colors.white,
           margin: EdgeInsets.only(top: 10),
+        ),
+        new Container(
+          child: new ListTile(
+            leading: new Icon(
+              Icons.settings,
+              color: Colors.orange[400],
+            ),
+            title: new Text("退出登录"),
+            trailing: new Icon(Icons.chevron_right),
+            onTap: () {
+              Fluttertoast.showToast(msg: "退出登录");
+              bloc.loginout();
+              RouterManager.navigateReplaceTo(context, Routes.account_page,
+                  transition: TransitionType.inFromRight);
+            },
+          ),
+          color: Colors.white,
+          margin: EdgeInsets.only(top: 10),
         )
       ],
     ));
@@ -162,6 +191,13 @@ class _MinePageState extends State<MinePage>
 class MineBloc extends BlocBase {
   @override
   void initState() {}
+
+  void loginout() {
+    SpUtil.putString(Constants.TELE_KEY, null);
+    SpUtil.putString(Constants.USERID_KEY, null);
+    SpUtil.putString(Constants.PWD_KEY, null);
+    SpUtil.putBool(Constants.ISLOGIN_KEY, false);
+  }
 
   @override
   void dispose() {}

@@ -133,7 +133,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               new WidgetDecoration(CommonWidget.getLoginRaisedButton(text: '注册', onPressed: () {}))
-                  .padding(top: 60, left: 50, right: 50)
+                  .padding(top: 35, left: 50, right: 50)
                   .build(),
             ],
           ),

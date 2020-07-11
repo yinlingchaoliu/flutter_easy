@@ -6,7 +6,6 @@ import 'dart:io';
 import 'package:dio/dio.dart' hide Lock;
 import 'package:flutter_easy/common/net/bean/baseresp.dart';
 import 'package:flutter_easy/common/net/exception/code.dart';
-import 'package:flutter_easy/common/net/interceptors/log_interceptor.dart';
 import 'package:flutter_easy/common/net/interceptors/token_interceptor.dart';
 import 'package:flutter_easy/common/net/result_data.dart';
 import 'package:synchronized/synchronized.dart' show Lock;
@@ -30,8 +29,8 @@ class HttpManager {
   _init() {
     _dio = new Dio();
 //    _dio.interceptors.add(new HeaderInterceptors());
-    _dio.interceptors.add(_tokenInterceptors);
-    _dio.interceptors.add(new LogsInterceptors());
+//    _dio.interceptors.add(_tokenInterceptors);
+//    _dio.interceptors.add(new LogsInterceptors());
 //    _dio.interceptors.add(new ErrorInterceptors(_dio));
 //    _dio.interceptors.add(new ResponseInterceptors());
   }
@@ -71,8 +70,7 @@ class HttpManager {
   ///[ params] 请求参数
   ///[ header] 外加头
   ///[ option] 配置
-  netFetch(url, params, Map<String, dynamic> header, Options option,
-      {noTip = false}) async {
+  netFetch(url, params, Map<String, dynamic> header, Options option, {noTip = false}) async {
     Map<String, dynamic> headers = HashMap();
     if (header != null) {
       headers.addAll(header);
@@ -95,13 +93,11 @@ class HttpManager {
       } else {
         errorResponse = new Response(statusCode: 666);
       }
-      if (e.type == DioErrorType.CONNECT_TIMEOUT ||
-          e.type == DioErrorType.RECEIVE_TIMEOUT) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT || e.type == DioErrorType.RECEIVE_TIMEOUT) {
         errorResponse.statusCode = HttpCode.NETWORK_TIMEOUT;
       }
       return new ResultData(
-          HttpCode.errorHandleFunction(
-              errorResponse.statusCode, e.message, noTip),
+          HttpCode.errorHandleFunction(errorResponse.statusCode, e.message, noTip),
           false,
           errorResponse.statusCode);
     }
@@ -119,8 +115,7 @@ class HttpManager {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress);
 
-    if (response.statusCode == HttpStatus.ok ||
-        response.statusCode == HttpStatus.created) {
+    if (response.statusCode == HttpStatus.ok || response.statusCode == HttpStatus.created) {
       try {
         int code = response.statusCode;
         RequestOptions retOption = response.request;
@@ -166,9 +161,7 @@ class HttpManager {
 
   /// decode response data.
   static Map<String, dynamic> _decodeData(Response response) {
-    if (response == null ||
-        response.data == null ||
-        response.data.toString().isEmpty) {
+    if (response == null || response.data == null || response.data.toString().isEmpty) {
       return new Map();
     }
     return json.decode(response.data.toString());

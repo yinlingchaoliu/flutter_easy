@@ -135,6 +135,18 @@ flutter:
     - static/images/ic_idcode.png
     - static/images/ic_checkbox_checked.png
     - static/images/ic_checkbox_normal.png
+    - static/images/ic_banner.png
+
+    - static/images/ic_home_buttom_left.png
+    - static/images/ic_home_buttom_right.png
+
+    - static/images/ic_tag1.png
+    - static/images/ic_tag2.png
+    - static/images/ic_tag3.png
+
+    - static/images/ic_authent_idup.png
+    - static/images/ic_authent_iddown.png
+    - static/images/ic_authent_live.png
 
   fonts:
     - family: wxcIconFont

@@ -3,9 +3,10 @@ import 'dart:convert';
 import 'package:flutter_easy/common/net/api.dart';
 import 'package:flutter_easy/common/net/bean/baseresp.dart';
 import 'package:flutter_easy/common/util/sputil.dart';
-import 'package:flutter_easy/config/address.dart';
 import 'package:flutter_easy/config/config.dart';
-import 'package:flutter_easy/repo/bean/login_request.dart';
+import 'package:flutter_easy/test/address.dart';
+
+import 'bean/login_request.dart';
 
 ///
 /// chentong
@@ -13,8 +14,7 @@ import 'package:flutter_easy/repo/bean/login_request.dart';
 ///
 class GithubRepository {
   ///登录请求
-  static Future<BaseResp<LoginRequest>> login(
-      String userName, String password) async {
+  static Future<BaseResp<LoginRequest>> login(String userName, String password) async {
     String type = userName + ":" + password;
     var bytes = utf8.encode(type);
     var base64Str = base64.encode(bytes);
@@ -28,8 +28,7 @@ class GithubRepository {
     LoginBean bean = LoginBean();
     LoginRequest loginRequest = LoginRequest();
 
-    loginRequest.initOption(
-        Method.post, Address.getAuthorization(), bean.toJson());
+    loginRequest.initOption(Method.post, Address.getAuthorization(), bean.toJson());
 
     ///网络请求
     return await HttpManager.request<LoginRequest>(loginRequest);

@@ -185,7 +185,7 @@ class SpUtil {
   }
 
   ///Sp is initialized.
-  static bool isInitialized() {
+  static bool _isInitialized() {
     return _prefs != null;
   }
 }
